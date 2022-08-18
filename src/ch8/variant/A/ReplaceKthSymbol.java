@@ -6,21 +6,27 @@ public class ReplaceKthSymbol {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter k: ");
-        int k = scanner.nextInt();
+        int k = scanner.nextInt() - 1;
         scanner.nextLine();
         System.out.println("Enter symbol: ");
-        String symbol = scanner.next();
-        String text = "But ultra-distance and mountain runner Kilian Jornet Burgada ascended the mountain in May 2017 alone, without an oxygen mask or fixed ropes for climbing.\n" +
-                "Oh, and he did it in 26 hours.\n" +
-                "With food poisoning.\n" +
-                "And then, five days later, he did it again, this time in only 17 hours.";
-        //String text2 = text.replaceAll("\n"," ");
-        System.out.println(text);
-        String regexsd = "."+"{"+k+"}"+"(.)";
-        String regex12 = ".{3}(.)";
-        String text2 = text.replaceAll(regex12,symbol);
-        System.out.println(text2);
-
-
+        char symbol = scanner.next().charAt(0);
+        String text = "But ultra-distance and mountain runner Kilian Jornet Burgada ascended the mountain in May 2017 alone, without an oxygen mask or fixed ropes for climbing.";
+        String[] words = text.split(" ");
+        for (int i = 0; i < words.length; i++) {
+            StringBuilder buff = new StringBuilder(words[i]);
+            if(words[i].length() > k){
+                buff.setCharAt(k,symbol);
+                words[i] = buff + " ";
+            }
+            else{
+                words[i] = buff + " ";
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+        for (String word : words) {
+            sb.append(word);
+        }
+        String str = sb.toString().trim();
+        System.out.println(str);
     }
 }
